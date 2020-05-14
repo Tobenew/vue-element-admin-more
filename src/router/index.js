@@ -11,6 +11,7 @@ import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
+import mapRouter from './modules/map'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -108,6 +109,8 @@ export const constantRoutes = [
       }
     ]
   },
+  // 此处引入地图路由
+  mapRouter,
   {
     path: '/profile',
     component: Layout,
@@ -130,11 +133,11 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
-    path: '/icon',
+    path: '/',
     component: Layout,
-    redirect: '/permission/page',
+    redirect: '',
     alwaysShow: true, // will always show the root menu
-    name: 'Permission',
+    name: 'Tip',
     meta: {
       title: '以下为花裤衩菜单',
       icon: 'down',
@@ -200,6 +203,7 @@ export const asyncRoutes = [
   componentsRouter,
   chartsRouter,
   nestedRouter,
+
   tableRouter,
 
   {
@@ -208,7 +212,7 @@ export const asyncRoutes = [
     redirect: '/example/list',
     name: 'Example',
     meta: {
-      title: 'Example',
+      title: '综合实例',
       icon: 'example'
     },
     children: [
@@ -216,20 +220,20 @@ export const asyncRoutes = [
         path: 'create',
         component: () => import('@/views/example/create'),
         name: 'CreateArticle',
-        meta: { title: 'Create Article', icon: 'edit' }
+        meta: { title: '创建文章', icon: 'edit' }
       },
       {
         path: 'edit/:id(\\d+)',
         component: () => import('@/views/example/edit'),
         name: 'EditArticle',
-        meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
+        meta: { title: '编辑文章', noCache: true, activeMenu: '/example/list' },
         hidden: true
       },
       {
         path: 'list',
         component: () => import('@/views/example/list'),
         name: 'ArticleList',
-        meta: { title: 'Article List', icon: 'list' }
+        meta: { title: '文章列表', icon: 'list' }
       }
     ]
   },
@@ -253,7 +257,7 @@ export const asyncRoutes = [
     redirect: 'noRedirect',
     name: 'ErrorPages',
     meta: {
-      title: 'Error Pages',
+      title: '错误页面',
       icon: '404'
     },
     children: [
@@ -280,7 +284,7 @@ export const asyncRoutes = [
         path: 'log',
         component: () => import('@/views/error-log/index'),
         name: 'ErrorLog',
-        meta: { title: 'Error Log', icon: 'bug' }
+        meta: { title: '错误日志', icon: 'bug' }
       }
     ]
   },
@@ -299,25 +303,25 @@ export const asyncRoutes = [
         path: 'export-excel',
         component: () => import('@/views/excel/export-excel'),
         name: 'ExportExcel',
-        meta: { title: 'Export Excel' }
+        meta: { title: '导出 Excel' }
       },
       {
         path: 'export-selected-excel',
         component: () => import('@/views/excel/select-excel'),
         name: 'SelectExcel',
-        meta: { title: 'Export Selected' }
+        meta: { title: '导出已选项' }
       },
       {
         path: 'export-merge-header',
         component: () => import('@/views/excel/merge-header'),
         name: 'MergeHeader',
-        meta: { title: 'Merge Header' }
+        meta: { title: '导出多级表头' }
       },
       {
         path: 'upload-excel',
         component: () => import('@/views/excel/upload-excel'),
         name: 'UploadExcel',
-        meta: { title: 'Upload Excel' }
+        meta: { title: '上传 Excel' }
       }
     ]
   },
@@ -334,7 +338,7 @@ export const asyncRoutes = [
         path: 'download',
         component: () => import('@/views/zip/index'),
         name: 'ExportZip',
-        meta: { title: 'Export Zip' }
+        meta: { title: '导出 Zip' }
       }
     ]
   },
@@ -366,7 +370,7 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/theme/index'),
         name: 'Theme',
-        meta: { title: 'Theme', icon: 'theme' }
+        meta: { title: '换肤', icon: 'theme' }
       }
     ]
   },
@@ -389,8 +393,8 @@ export const asyncRoutes = [
     component: Layout,
     children: [
       {
-        path: 'https://github.com/PanJiaChen/vue-element-admin',
-        meta: { title: 'External Link', icon: 'link' }
+        path: 'https://github.com/Tobenew/vue-element-admin-more',
+        meta: { title: '外链', icon: 'link' }
       }
     ]
   },
