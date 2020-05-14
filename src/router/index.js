@@ -133,7 +133,7 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
-    path: '/',
+    path: '/info',
     component: Layout,
     redirect: '',
     alwaysShow: true, // will always show the root menu
