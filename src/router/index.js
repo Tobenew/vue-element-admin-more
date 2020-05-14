@@ -130,6 +130,19 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
+    path: '/icon',
+    component: Layout,
+    redirect: '/permission/page',
+    alwaysShow: true, // will always show the root menu
+    name: 'Permission',
+    meta: {
+      title: '以下为花裤衩菜单',
+      icon: 'down',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
+    children: []
+  },
+  {
     path: '/permission',
     component: Layout,
     redirect: '/permission/page',
@@ -170,7 +183,6 @@ export const asyncRoutes = [
       }
     ]
   },
-
   {
     path: '/icon',
     component: Layout,
