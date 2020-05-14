@@ -19,6 +19,7 @@
             <el-input v-model="markerForm.iconUrl" />
           </el-form-item>
         </el-form>
+        <el-button type="primary" @click="openMarkerTool">标记描点</el-button>
       </el-col>
 
     </el-row>
@@ -50,7 +51,9 @@ export default {
         // Lat: 39.89945,
         // 标记图片
         // iconUrl: 'http://api.tianditu.gov.cn/img/map/markerA.png'
-      }
+      },
+      // 标记工具对象
+      markerTool: null
 
     }
   },
@@ -83,6 +86,32 @@ export default {
       // 向地图上添加自定义标注
       var marker = new T.Marker(new T.LngLat(this.markerForm.Lng, this.markerForm.Lat), this.markerOptions)
       this.map.addOverLay(marker)
+    },
+    // 创建标记工具
+    setMarkerTool() {
+      // 创建标注工具对象
+      this.markerTool = new T.MarkTool(this.map, { follow: true })
+    },
+    // 编辑标记
+    editMarker() {
+      const markers = this.markerTool.getMarkers()
+      for (let i = 0; i < markers.length; i++) {
+        markers[i].enableDragging()
+      }
+    },
+    // 关闭编辑标记工具
+    endeditMarker() {
+      const markers = this.markerTool.getMarkers()
+      for (let i = 0; i < markers.length; i++) {
+        markers[i].disableDragging()
+      }
+    },
+    // 打开标记编辑
+    openMarkerTool() {
+      // this.setMarkerOptions()
+      this.setMarkerTool()
+      this.endeditMarker()
+      this.markerTool.open()
     }
 
   }
